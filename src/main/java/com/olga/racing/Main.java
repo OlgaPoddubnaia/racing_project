@@ -1,8 +1,6 @@
 package com.olga.racing;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class Main {
@@ -15,9 +13,29 @@ public class Main {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement = connection.createStatement();
+
+
+            String SQL = "SELECT * FROM todays_racing";
+            ResultSet resultSet = statement.executeQuery(SQL);
+           //statement.executeUpdate("INSERT INTO todays_racing( horse_name, rating, age, weight) VALUES ( 'check', 9.4, 8, '11-0');");
+            //statement.executeUpdate("delete from todays_racing where id = 11");
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                System.out.println("id: " + id);
+                System.out.println("Name: " + name);
+                System.out.println("===================\n");
+            }
+
+
+
+
             System.out.println("Соединение с БД установлено");
 
         } catch (SQLException ex) {
+
             System.out.println("SQLException ");
         } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException");
