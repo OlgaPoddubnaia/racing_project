@@ -2,10 +2,10 @@ package com.olga.racing.entity;
 
 public class Result {
     private int id;
-    private int racingId;
     private int horseId;
-    private float money;
     private String typeOfBet;
+    private float money;
+
 
     public int getId() {
         return id;
@@ -15,13 +15,6 @@ public class Result {
         this.id = id;
     }
 
-    public int getRacingId() {
-        return racingId;
-    }
-
-    public void setRacingId(int racingId) {
-        this.racingId = racingId;
-    }
 
     public int getHorseId() {
         return horseId;
