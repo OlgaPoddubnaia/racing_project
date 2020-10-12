@@ -20,12 +20,12 @@ public class HorsesService extends DBConnect implements HorsesDAO {
     public List<Horses> getAll() {
         List<Horses> horsesList = new ArrayList<>();
 
-        String horseSQL = "SELECT id, horseName, rating, age, weight, coefficient";
+        String sql = "SELECT id, horseName, rating, age, weight, coefficient";
 
         Statement statement = null;
         try {
             statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(horseSQL);
+            ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
                 Horses horses = new Horses();
@@ -43,6 +43,9 @@ public class HorsesService extends DBConnect implements HorsesDAO {
             System.out.println("SQLException ");
         } finally {
             try {
+                if (statement != null) {
+                    statement.close();
+                }
                 if (connection != null) {
                     connection.close();
                 }
@@ -58,13 +61,13 @@ public class HorsesService extends DBConnect implements HorsesDAO {
     public Horses getByID(int id) {
         PreparedStatement preparedStatement = null;
 
-        String horseSQL = "SELECT horseName, rating, age, weight, coefficient FROM horses WHERE id=?";
+        String sql = "SELECT horseName, rating, age, weight, coefficient FROM horses WHERE id=?";
 
         Horses horses = new Horses();
         try {
-            preparedStatement = connection.prepareStatement(horseSQL);
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery(horseSQL);
+            ResultSet resultSet = preparedStatement.executeQuery(sql);
 
             horses.setId(resultSet.getInt("id"));
             horses.setHorseName(resultSet.getString("horseName"));
@@ -80,6 +83,9 @@ public class HorsesService extends DBConnect implements HorsesDAO {
             try {
                 if (connection != null) {
                     connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
