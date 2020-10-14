@@ -10,18 +10,22 @@ import java.util.List;
 
 public class HorsesService extends DBConnect implements HorsesDAO {
 
-    Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    Connection connection;
 
-    public HorsesService() throws SQLException {
-        System.out.println("Ошибка подключения к БД");
+    {
+        try {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            System.out.println( "ошибка");
+        }
     }
+
 
 
     @Override
     public List<Horses> getAll() {
         List<Horses> horsesList = new ArrayList<>();
 
-        //String sql = "SELECT id, horseName, rating, age, weight, coefficient";
         String sql = "SELECT * FROM racing_db.horses";
 
 
@@ -33,7 +37,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
             while (resultSet.next()) {
                 Horses horses = new Horses();
                 horses.setId(resultSet.getInt("id"));
-                horses.setHorseName(resultSet.getString("horseName"));
+                horses.setHorseName(resultSet.getString("horse_name"));
                 horses.setRating(resultSet.getFloat("rating"));
                 horses.setAge(resultSet.getInt("age"));
                 horses.setWeight(resultSet.getString("weight"));
@@ -44,7 +48,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
 
 
         } catch (SQLException ex) {
-            System.out.println("SQLException ");
+            System.out.println(ex.toString());
         } finally {
             try {
                 if (statement != null) {
@@ -65,7 +69,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
     public Horses getByID(int id) {
         PreparedStatement preparedStatement = null;
 
-        String sql = "SELECT horseName, rating, age, weight, coefficient FROM racing_db.horses WHERE id=?";
+        String sql = "SELECT id, horse_name, rating, age, weight, coefficient FROM racing_db.horses WHERE id=?";
 
         Horses horses = new Horses();
         try {
@@ -74,7 +78,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
             ResultSet resultSet = preparedStatement.executeQuery(sql);
 
             horses.setId(resultSet.getInt("id"));
-            horses.setHorseName(resultSet.getString("horseName"));
+            horses.setHorseName(resultSet.getString("horse_name"));
             horses.setRating(resultSet.getFloat("rating"));
             horses.setAge(resultSet.getInt("age"));
             horses.setWeight(resultSet.getString("weight"));
@@ -82,7 +86,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
 
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("SQLException ");
+            System.out.println(ex.toString());
         } finally {
             try {
                 if (connection != null) {

@@ -10,11 +10,16 @@ import java.util.List;
 
 public class ResultService extends DBConnect implements ResultDAO {
 
-    Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    Connection connection;
 
-    public ResultService() throws SQLException {
-        System.out.println("Ошибка подключения к БД");
+    {
+        try {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
     @Override
     public List<Result> getAll() {

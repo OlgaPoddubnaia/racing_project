@@ -2,7 +2,6 @@ package com.olga.racing.service;
 
 import com.olga.racing.DBConnect;
 import com.olga.racing.dao.TypesOfBetsDAO;
-import com.olga.racing.entity.Result;
 import com.olga.racing.entity.TypesOfBets;
 
 import java.sql.*;
@@ -10,11 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
-    Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    Connection connection;
 
-    public TypesOfBetsService() throws SQLException {
-        System.out.println("Ошибка подключения к БД");
+    {
+        try {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            e.getMessage();
+        }
     }
+
 
     @Override
     public List<TypesOfBets> getAll() {

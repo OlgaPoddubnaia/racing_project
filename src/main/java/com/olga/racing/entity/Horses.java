@@ -1,5 +1,7 @@
 package com.olga.racing.entity;
 
+import java.util.Objects;
+
 public class Horses {
 
     private int id;
@@ -58,5 +60,35 @@ public class Horses {
 
     public void setCoefficient(float coefficient) {
         this.coefficient = coefficient;
+    }
+
+    @Override
+    public String toString() {
+        return "Horses{" +
+                "id=" + id +
+                ", horseName='" + horseName + '\'' +
+                ", rating=" + rating +
+                ", age=" + age +
+                ", weight='" + weight + '\'' +
+                ", coefficient=" + coefficient +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Horses horses = (Horses) o;
+        return id == horses.id &&
+                Float.compare(horses.rating, rating) == 0 &&
+                age == horses.age &&
+                Float.compare(horses.coefficient, coefficient) == 0 &&
+                Objects.equals(horseName, horses.horseName) &&
+                Objects.equals(weight, horses.weight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, horseName, rating, age, weight, coefficient);
     }
 }
