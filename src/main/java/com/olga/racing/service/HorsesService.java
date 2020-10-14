@@ -16,11 +16,14 @@ public class HorsesService extends DBConnect implements HorsesDAO {
         System.out.println("Ошибка подключения к БД");
     }
 
+
     @Override
     public List<Horses> getAll() {
         List<Horses> horsesList = new ArrayList<>();
 
-        String sql = "SELECT id, horseName, rating, age, weight, coefficient";
+        //String sql = "SELECT id, horseName, rating, age, weight, coefficient";
+        String sql = "SELECT * FROM racing_db.horses";
+
 
         Statement statement = null;
         try {
@@ -38,6 +41,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
 
                 horsesList.add(horses);
             }
+
 
         } catch (SQLException ex) {
             System.out.println("SQLException ");
@@ -61,7 +65,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
     public Horses getByID(int id) {
         PreparedStatement preparedStatement = null;
 
-        String sql = "SELECT horseName, rating, age, weight, coefficient FROM horses WHERE id=?";
+        String sql = "SELECT horseName, rating, age, weight, coefficient FROM racing_db.horses WHERE id=?";
 
         Horses horses = new Horses();
         try {

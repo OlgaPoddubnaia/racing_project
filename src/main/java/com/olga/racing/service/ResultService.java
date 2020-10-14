@@ -20,7 +20,7 @@ public class ResultService extends DBConnect implements ResultDAO {
     public List<Result> getAll() {
         List<Result> resultList = new ArrayList<>();
 
-        String sql = "SELECT id, horseId, typeOfBet, money";
+        String sql = "SELECT * FROM racing_db.result";
 
         Statement statement = null;
         try {
@@ -58,7 +58,7 @@ public class ResultService extends DBConnect implements ResultDAO {
     public void add(Result result) {
         PreparedStatement preparedStatement = null;
 
-        String sql = "INSERT INTO RESULT (id, horseId, typeOfBet, money)" + "VALUES(?,?,?,?)";
+        String sql = "INSERT INTO racing_db.result" + " (id, horseId, typeOfBet, money)" + "VALUES(?,?,?,?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -90,7 +90,7 @@ public class ResultService extends DBConnect implements ResultDAO {
     public void remove(Result result) {
         PreparedStatement preparedStatement = null;
 
-        String sql = "REMOVE FROM RESULT WHERE id=?";
+        String sql = "DELETE FROM racing_db.result WHERE id=?";
         try {
             preparedStatement = connection.prepareStatement(sql);
 
@@ -112,4 +112,6 @@ public class ResultService extends DBConnect implements ResultDAO {
         }
 
     }
+
+
 }

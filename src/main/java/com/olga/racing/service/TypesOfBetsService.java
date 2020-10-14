@@ -20,7 +20,7 @@ public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
     public List<TypesOfBets> getAll() {
         List<TypesOfBets> betsList = new ArrayList<>();
 
-        String sql = "SELECT type, description";
+        String sql = "SELECT * FROM racing_db.types_of_bets";
 
         Statement statement = null;
         try {

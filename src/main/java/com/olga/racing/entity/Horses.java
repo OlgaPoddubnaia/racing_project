@@ -1,6 +1,5 @@
 package com.olga.racing.entity;
 
-//@Entity
 public class Horses {
 
     private int id;
