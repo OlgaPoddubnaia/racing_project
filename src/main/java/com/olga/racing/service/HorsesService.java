@@ -16,10 +16,9 @@ public class HorsesService extends DBConnect implements HorsesDAO {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            System.out.println( "ошибка");
+            System.out.println("ошибка");
         }
     }
-
 
 
     @Override
@@ -27,7 +26,6 @@ public class HorsesService extends DBConnect implements HorsesDAO {
         List<Horses> horsesList = new ArrayList<>();
 
         String sql = "SELECT * FROM racing_db.horses";
-
 
         Statement statement = null;
         try {
@@ -69,22 +67,24 @@ public class HorsesService extends DBConnect implements HorsesDAO {
     public Horses getByID(int id) {
         PreparedStatement preparedStatement = null;
 
-        String sql = "SELECT id, horse_name, rating, age, weight, coefficient FROM racing_db.horses WHERE id=?";
+        String sql = "SELECT * FROM racing_db.horses WHERE id=?";
 
         Horses horses = new Horses();
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery(sql);
 
-            horses.setId(resultSet.getInt("id"));
-            horses.setHorseName(resultSet.getString("horse_name"));
-            horses.setRating(resultSet.getFloat("rating"));
-            horses.setAge(resultSet.getInt("age"));
-            horses.setWeight(resultSet.getString("weight"));
-            horses.setCoefficient(resultSet.getFloat("coefficient"));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                horses.setId(resultSet.getInt("id"));
+                horses.setHorseName(resultSet.getString("horse_name"));
+                horses.setRating(resultSet.getFloat("rating"));
+                horses.setAge(resultSet.getInt("age"));
+                horses.setWeight(resultSet.getString("weight"));
+                horses.setCoefficient(resultSet.getFloat("coefficient"));
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeQuery();
+            }
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         } finally {

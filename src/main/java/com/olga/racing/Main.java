@@ -10,15 +10,15 @@ import java.util.List;
 
 public class Main {
 
-
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args)  {
+        //показать все ставки
         TypesOfBetsService typesOfBetsService = new TypesOfBetsService();
         List<TypesOfBets> types = typesOfBetsService.getAll();
         for (TypesOfBets t : types) {
             System.out.println(t);
         }
 
-
+        //показать список всех лошадей
         HorsesService horsesService = new HorsesService();
         List<Horses> horses = horsesService.getAll();
         for (Horses h : horses
@@ -26,10 +26,12 @@ public class Main {
             System.out.println(h);
         }
 
-
+        //показать лошадь по id
         HorsesService horsesService2 = new HorsesService();
         Horses horses1 = horsesService2.getByID(4);
         System.out.println(horses1);
+
+
 
 
     }
