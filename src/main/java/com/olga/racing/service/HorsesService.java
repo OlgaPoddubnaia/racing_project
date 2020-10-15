@@ -16,7 +16,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            System.out.println("ошибка");
+            System.out.println(e.toString());
         }
     }
 

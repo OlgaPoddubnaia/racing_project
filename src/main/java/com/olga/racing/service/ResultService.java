@@ -16,7 +16,7 @@ public class ResultService extends DBConnect implements ResultDAO {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.toString());
         }
     }
 
@@ -35,14 +35,14 @@ public class ResultService extends DBConnect implements ResultDAO {
             while (resultSet.next()) {
                 Result result = new Result();
                 result.setId(resultSet.getInt("id"));
-                result.setHorseId(resultSet.getInt("horseId"));
-                result.setTypeOfBet(resultSet.getString("typeOfBet"));
+                result.setHorseId(resultSet.getInt("horse_id"));
+                result.setTypeOfBet(resultSet.getString("type_of_bet"));
                 result.setMoney(resultSet.getFloat("money"));
                 resultList.add(result);
             }
 
         } catch (SQLException ex) {
-            System.out.println("SQLException");
+            System.out.println(ex.toString());
         } finally {
             try {
                 if (statement != null) {
@@ -63,7 +63,9 @@ public class ResultService extends DBConnect implements ResultDAO {
     public void add(Result result) {
         PreparedStatement preparedStatement = null;
 
-        String sql = "INSERT INTO racing_db.result" + " (id, horseId, typeOfBet, money)" + "VALUES(?,?,?,?)";
+        String sql = "INSERT INTO racing_db.result" + " (id, horse_id, type_of_bet, money)" + "VALUES(?,?,?,?)";
+/*  statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);*/
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -75,7 +77,7 @@ public class ResultService extends DBConnect implements ResultDAO {
 
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("SQLException ");
+            System.out.println(ex.toString());
         } finally {
             try {
                 if (connection != null) {
@@ -92,17 +94,17 @@ public class ResultService extends DBConnect implements ResultDAO {
 
 
     @Override
-    public void remove(Result result) {
+    public void remove(int id) {
         PreparedStatement preparedStatement = null;
 
         String sql = "DELETE FROM racing_db.result WHERE id=?";
         try {
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, result.getId());
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("SQLException ");
+            System.out.println(ex.toString());
         } finally {
             try {
                 if (connection != null) {

@@ -15,5 +15,5 @@ public interface ResultDAO {
 
 
     //delete
-    void remove(Result result);
+    void remove(int id);
 }
