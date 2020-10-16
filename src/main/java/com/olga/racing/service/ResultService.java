@@ -120,5 +120,28 @@ public class ResultService extends DBConnect implements ResultDAO {
 
     }
 
+    @Override
+    public void deleteAll() {
+        PreparedStatement preparedStatement = null;
 
+        String sql = "TRUNCATE TABLE racing_db.result ";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
 }
