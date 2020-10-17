@@ -149,9 +149,16 @@ public class Main {
         return n;
     }
 
-    public static void delBet(int id) {
-        ResultService resultService1 = new ResultService();
-        resultService1.remove(id);
+    public static void delBet(int id) throws IOException {
+        ResultService resultService = new ResultService();
+        List<Result> resultServiceList = resultService.getAll();
+        int sizeOfBets = resultServiceList.size();
+        if (id < sizeOfBets) {
+            resultService.remove(id);
+        } else {
+            System.out.println("Вы ввели id, которого нет в списке ваших ставок. Вы перенаправляетесь в главное меню.");
+            switchActions();
+        }
     }
 
     public static void switchActions() throws IOException {
