@@ -7,4 +7,5 @@ import java.util.List;
 public interface TypesOfBetsDAO {
     //read
     List<TypesOfBets> getAll();
+
 }

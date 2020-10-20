@@ -11,11 +11,11 @@ import java.util.List;
 public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
     Connection connection;
 
-    {
+    public TypesOfBetsService() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -32,7 +32,7 @@ public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-             TypesOfBets typesOfBets= new TypesOfBets();
+                TypesOfBets typesOfBets = new TypesOfBets();
                 typesOfBets.setType(resultSet.getString("type"));
                 typesOfBets.setDescription(resultSet.getString("description"));
                 betsList.add(typesOfBets);
@@ -54,4 +54,5 @@ public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
         }
         return betsList;
     }
+
 }

@@ -12,8 +12,8 @@ public interface ResultDAO {
     //add
     void add(Result result) throws SQLException;
 
-    //delete bu Id
-    void remove(int id);
+    //delete by Id
+    void removeById(int id);
 
     //delete all
     void deleteAll();

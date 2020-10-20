@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="218d48d1-46af-47f0-b2e7-c27e63f4532f">
-        <schema name="racing_db" object-types="index, view, function, column, dataset trigger, table, procedure, constraint" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="218d48d1-46af-47f0-b2e7-c27e63f4532f">
@@ -113,8 +109,8 @@
           <restore-workspace value="true" />
           <restore-workspace-deep value="true" />
           <environment-type value="default" />
-          <idle-time-to-disconnect value="30" />
-          <idle-time-to-disconnect-pool value="5" />
+          <idle-time-to-disconnect value="50" />
+          <idle-time-to-disconnect-pool value="50" />
           <credential-expiry-time value="10" />
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
@@ -265,7 +261,7 @@
       </values-actions-popup>
       <general>
         <fetch-block-size value="100" />
-        <fetch-timeout value="30" />
+        <fetch-timeout value="300" />
         <trim-whitespaces value="true" />
         <convert-empty-strings-to-null value="true" />
         <select-content-on-cell-edit value="true" />
@@ -469,7 +465,7 @@
     <execution-engine-settings>
       <statement-execution>
         <fetch-block-size value="100" />
-        <execution-timeout value="20" />
+        <execution-timeout value="100" />
         <debug-execution-timeout value="600" />
         <focus-result value="false" />
         <prompt-execution value="false" />
@@ -479,7 +475,7 @@
         <execution-timeout value="300" />
       </script-execution>
       <method-execution>
-        <execution-timeout value="30" />
+        <execution-timeout value="100" />
         <debug-execution-timeout value="600" />
         <parameter-history-size value="10" />
       </method-execution>

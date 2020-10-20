@@ -12,7 +12,7 @@ public class ResultService extends DBConnect implements ResultDAO {
 
     Connection connection;
 
-    {
+    public ResultService() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
@@ -51,8 +51,8 @@ public class ResultService extends DBConnect implements ResultDAO {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 
@@ -64,8 +64,6 @@ public class ResultService extends DBConnect implements ResultDAO {
         PreparedStatement preparedStatement = null;
 
         String sql = "INSERT INTO racing_db.result" + " (id, horse_id, type_of_bet, money)" + "VALUES(?,?,?,?)";
-/*  statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);*/
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -86,15 +84,15 @@ public class ResultService extends DBConnect implements ResultDAO {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
 
     @Override
-    public void remove(int id) {
+    public void removeById(int id) {
         PreparedStatement preparedStatement = null;
 
         String sql = "DELETE FROM racing_db.result WHERE id=?";
@@ -113,8 +111,8 @@ public class ResultService extends DBConnect implements ResultDAO {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
         }
 
@@ -139,8 +137,8 @@ public class ResultService extends DBConnect implements ResultDAO {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
