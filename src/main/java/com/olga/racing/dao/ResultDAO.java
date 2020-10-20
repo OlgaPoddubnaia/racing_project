@@ -12,7 +12,7 @@ public interface ResultDAO {
     //add
     void add(Result result) throws SQLException;
 
-    //delete bu Id
+    //delete by Id
     void removeById(int id);
 
     //delete all

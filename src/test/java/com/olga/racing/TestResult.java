@@ -1,6 +1,5 @@
 package com.olga.racing;
 
-import com.olga.racing.businessLogic.DeleteBetBusinessLogic;
 import com.olga.racing.entity.Result;
 import com.olga.racing.service.ResultService;
 import org.testng.Assert;
@@ -10,7 +9,7 @@ import org.testng.annotations.Test;
 public class TestResult {
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         ResultService resultService = new ResultService();
         System.out.println("Проверка размера resultService до добавления сущностей. resultService.getAll().size() = "+resultService.getAll().size());
         Result result1 = new Result();
@@ -36,7 +35,7 @@ public class TestResult {
     }
 
     @Test
-    public void testDelBet() {
+    public void testRemoveById() {
         Result result = new Result();
         result.setId(40);
         result.setHorseId(2);
@@ -60,7 +59,7 @@ public class TestResult {
     }
 
    @Test
-    public void deleteAll() {
+    public void testDeleteAll() {
         Result result1 = new Result();
         result1.setId(20);
         result1.setHorseId(1);
@@ -91,7 +90,7 @@ public class TestResult {
     }
 
     @Test
-    public void add() {
+    public void testAdd() {
         ResultService resultService = new ResultService();
         Result result1 = new Result();
         result1.setId(30);
