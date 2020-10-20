@@ -12,7 +12,7 @@ public class ResultService extends DBConnect implements ResultDAO {
 
     Connection connection;
 
-    public ResultService(){
+    public ResultService() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
