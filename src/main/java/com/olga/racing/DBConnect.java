@@ -13,9 +13,7 @@ public class DBConnect {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("Соединение с БД установлено");
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.toString());
         } finally {
             try {
