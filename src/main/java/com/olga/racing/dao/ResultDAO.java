@@ -13,7 +13,7 @@ public interface ResultDAO {
     void add(Result result) throws SQLException;
 
     //delete bu Id
-    void remove(int id);
+    void removeById(int id);
 
     //delete all
     void deleteAll();

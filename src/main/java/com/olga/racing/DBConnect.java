@@ -14,9 +14,9 @@ public class DBConnect {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("Соединение с БД установлено");
         } catch (SQLException ex) {
-            System.out.println("SQLException ");
+            System.out.println(ex.toString());
         } catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException");
+            System.out.println(ex.toString());
         } finally {
             try {
                 if (connection != null) {
@@ -24,6 +24,7 @@ public class DBConnect {
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+                System.out.println(throwables.toString());
             }
         }
     }

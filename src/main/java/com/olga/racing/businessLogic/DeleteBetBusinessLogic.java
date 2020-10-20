@@ -1,3 +1,4 @@
+
 package com.olga.racing.businessLogic;
 
 import com.olga.racing.entity.Result;
@@ -11,11 +12,12 @@ public class DeleteBetBusinessLogic {
         ResultService resultService = new ResultService();
         List<Result> resultServiceList = resultService.getAll();
         int sizeOfBets = resultServiceList.size();
-        if (id < sizeOfBets) {
-            resultService.remove(id);
+        if (id <= sizeOfBets) {
+            resultService.removeById(id);
         } else {
             System.out.println("Вы ввели id, которого нет в списке ваших ставок. Вы перенаправляетесь в главное меню.");
             SwitchActionBusinessLogic.switchActions();
         }
     }
 }
+

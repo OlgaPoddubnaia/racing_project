@@ -96,6 +96,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
                     preparedStatement.close();
                 }
             } catch (SQLException throwables) {
+                System.out.println(throwables.toString());
                 throwables.printStackTrace();
             }
         }
