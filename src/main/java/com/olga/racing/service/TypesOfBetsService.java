@@ -55,8 +55,4 @@ public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
         return betsList;
     }
 
-    @Override
-    public void add(TypesOfBets typesOfBets) {
-
-    }
 }

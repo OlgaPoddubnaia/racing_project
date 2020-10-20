@@ -10,6 +10,4 @@ public interface TypesOfBetsDAO {
     //read
     List<TypesOfBets> getAll();
 
-    //add
-    void add(TypesOfBets typesOfBets) throws SQLException;
 }

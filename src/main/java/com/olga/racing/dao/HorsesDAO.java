@@ -10,10 +10,4 @@ public interface HorsesDAO {
     //read
     List<Horses> getAll() throws SQLException;
 
-    //readByID
-    Horses getByID(int id);
-
-    //add
-    void add(Horses horses) throws SQLException;
-
 }
