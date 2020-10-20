@@ -1,3 +1,5 @@
+package com.olga.racing;
+
 import com.olga.racing.entity.Horses;
 import com.olga.racing.entity.Result;
 import com.olga.racing.service.HorsesService;
@@ -12,11 +14,11 @@ public class TestHorses {
     HorsesService horsesService = new HorsesService();
 
     public void testGetAll() {
-        Horses horses = new Horses();
+       /* Horses horses = new Horses();
         horses.setId(1);
         horses.getHorseName();
 
-        horsesService.getAll();
+        horsesService.getAll();*/
 
     }
 

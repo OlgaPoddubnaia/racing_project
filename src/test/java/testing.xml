@@ -3,9 +3,9 @@
 <suite name="Suite1">
     <test name="test1">
         <classes>
-            <class name="TestHorses"/>
-            <class name="TestResult"/>
-            <class name="TestTypesOfBets"/>
+            <class name="com.olga.racing.TestHorses"/>
+            <class name="com.olga.racing.TestResult"/>
+            <class name="com.olga.racing.TestTypesOfBets"/>
         </classes>
     </test>
 </suite>

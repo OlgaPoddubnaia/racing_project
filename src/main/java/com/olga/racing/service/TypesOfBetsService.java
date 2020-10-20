@@ -11,11 +11,11 @@ import java.util.List;
 public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
     Connection connection;
 
-    {
+   public TypesOfBetsService() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 

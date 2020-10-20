@@ -12,7 +12,7 @@ public class HorsesService extends DBConnect implements HorsesDAO {
 
     Connection connection;
 
-    {
+    public HorsesService() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {

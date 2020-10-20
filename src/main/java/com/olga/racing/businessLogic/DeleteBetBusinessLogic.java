@@ -13,7 +13,8 @@ public class DeleteBetBusinessLogic {
         List<Result> resultServiceList = resultService.getAll();
         int sizeOfBets = resultServiceList.size();
         if (id <= sizeOfBets) {
-            resultService.removeById(id);
+            ResultService resultServiceForRemove = new ResultService();
+            resultServiceForRemove.removeById(id);
         } else {
             System.out.println("Вы ввели id, которого нет в списке ваших ставок. Вы перенаправляетесь в главное меню.");
             SwitchActionBusinessLogic.switchActions();
