@@ -1,6 +1,7 @@
 package com.olga.racing;
 
 import com.olga.racing.entity.Result;
+import com.olga.racing.service.HorsesService;
 import com.olga.racing.service.ResultService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,10 +21,16 @@ public class TestResult {
         System.out.println("Проверка наличия result1 в resultService. Резульат = " + resultService.getAll().contains(result1));
 
         ResultService resultService1 = new ResultService();
-        resultService1.add(result1);
+        System.out.println("Проверка количества сущностей до добавления новой . Резульатат = " + resultService1.getAll().size());
 
         ResultService resultService2 = new ResultService();
-        Assert.assertTrue(resultService2.getAll().contains(result1));
+        resultService2.add(result1);
+
+        ResultService resultService3 = new ResultService();
+        Assert.assertTrue(resultService3.getAll().contains(result1));
+        ResultService resultService4 = new ResultService();
+        Assert.assertEquals(resultService4.getAll().size(), 1);
+
     }
 
     @Test(priority = 2)

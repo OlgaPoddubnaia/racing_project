@@ -43,10 +43,15 @@ public class TestHorses {
         System.out.println("Проверка наличия horses в таблице до добавления. Резульатат = " + horsesService.getAll().contains(horses));
 
         HorsesService horsesService1 = new HorsesService();
-        horsesService1.add(horses);
+        System.out.println("Проверка количества сущностей до добавления новой . Резульатат = " + horsesService1.getAll().size());
 
         HorsesService horsesService2 = new HorsesService();
-        Assert.assertTrue(horsesService2.getAll().contains(horses));
+        horsesService2.add(horses);
+
+        HorsesService horsesService3 = new HorsesService();
+        Assert.assertTrue(horsesService3.getAll().contains(horses));
+        HorsesService horsesService4 = new HorsesService();
+        Assert.assertEquals(horsesService4.getAll().size(),7);
     }
 
     @Test(priority = 3)

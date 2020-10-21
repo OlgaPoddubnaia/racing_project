@@ -33,10 +33,17 @@ public class TestTypesOfBets {
         System.out.println("Проверяем есть ли такая ставка до добавления. Результат = " + typesOfBetsService.getAll().contains(typesOfBets));
 
         TypesOfBetsService typesOfBetsService1 = new TypesOfBetsService();
-        typesOfBetsService1.add(typesOfBets);
+        System.out.println("Проверка размера таблицы до добавления новой сущности. Результат = "+typesOfBetsService1.getAll().size());
 
         TypesOfBetsService typesOfBetsService2 = new TypesOfBetsService();
-        Assert.assertTrue(typesOfBetsService2.getAll().contains(typesOfBets));
+        typesOfBetsService2.add(typesOfBets);
+
+        TypesOfBetsService typesOfBetsService3 = new TypesOfBetsService();
+        Assert.assertTrue(typesOfBetsService3.getAll().contains(typesOfBets));
+
+        TypesOfBetsService typesOfBetsService4 = new TypesOfBetsService();
+        Assert.assertEquals(typesOfBetsService4.getAll().size(),5);
+
     }
 
     @Test(priority = 3)
