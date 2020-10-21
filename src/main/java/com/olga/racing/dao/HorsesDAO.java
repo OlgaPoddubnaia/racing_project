@@ -9,4 +9,10 @@ public interface HorsesDAO {
     //read
     List<Horses> getAll() throws SQLException;
 
+    //add
+    void add(Horses horses);
+
+    //delete by Id
+    void removeById(int id);
+
 }

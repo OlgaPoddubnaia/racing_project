@@ -10,29 +10,20 @@ public class TestResult {
 
     @Test(priority = 1)
     public void testGetAll() {
-        ResultService resultService = new ResultService();
-        System.out.println("Проверка размера resultService до добавления сущностей. resultService.getAll().size() = " + resultService.getAll().size());
-
         Result result1 = new Result();
         result1.setId(1);
         result1.setHorseId(2);
         result1.setTypeOfBet("WIN");
         result1.setMoney(200);
 
-        Result result2 = new Result();
-        result2.setId(2);
-        result2.setHorseId(3);
-        result2.setTypeOfBet("SHOW");
-        result2.setMoney(200);
+        ResultService resultService = new ResultService();
+        System.out.println("Проверка наличия result1 в resultService. Резульат = " + resultService.getAll().contains(result1));
+
+        ResultService resultService1 = new ResultService();
+        resultService1.add(result1);
 
         ResultService resultService2 = new ResultService();
-        resultService2.add(result1);
-
-        ResultService resultService3 = new ResultService();
-        resultService3.add(result2);
-
-        ResultService resultService4 = new ResultService();
-        Assert.assertEquals(resultService4.getAll().size(), 2);
+        Assert.assertTrue(resultService2.getAll().contains(result1));
     }
 
     @Test(priority = 2)
@@ -55,7 +46,6 @@ public class TestResult {
         resultService1.removeById(id);
 
         ResultService resultService2 = new ResultService();
-
         Assert.assertFalse(resultService2.getAll().contains(result));
     }
 
@@ -69,7 +59,7 @@ public class TestResult {
         result1.setMoney(400);
 
         ResultService resultService2 = new ResultService();
-        System.out.println("Проверка, что до добавления resultService.getAll().contains(result1) = " + resultService2.getAll().contains(result1));
+        System.out.println("Проверка, есть ли result1 до добавления в resultService = " + resultService2.getAll().contains(result1));
 
         ResultService resultService = new ResultService();
         resultService.add(result1);
@@ -99,11 +89,10 @@ public class TestResult {
         resultService1.add(result2);
 
         ResultService resultService4 = new ResultService();
-        System.out.println("Проверка, что до вызова метода внесены данные в resultService. ResultServise.isEmpty() = " + resultService4.getAll().isEmpty());
+        System.out.println("Проверка, что до вызова метода удалния данных таблицы внесены данные в resultService есть = " + resultService4.getAll().isEmpty());
 
         ResultService resultService2 = new ResultService();
         resultService2.deleteAll();
-
 
         ResultService resultService3 = new ResultService();
         Assert.assertTrue(resultService3.getAll().isEmpty());

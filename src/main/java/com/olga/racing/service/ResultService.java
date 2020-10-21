@@ -55,7 +55,6 @@ public class ResultService extends DBConnect implements ResultDAO {
                 e.printStackTrace();
             }
         }
-
         return resultList;
     }
 
@@ -90,7 +89,6 @@ public class ResultService extends DBConnect implements ResultDAO {
         }
     }
 
-
     @Override
     public void removeById(int id) {
         PreparedStatement preparedStatement = null;
@@ -115,7 +113,6 @@ public class ResultService extends DBConnect implements ResultDAO {
                 System.out.println(e.toString());
             }
         }
-
     }
 
     @Override

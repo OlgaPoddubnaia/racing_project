@@ -19,7 +19,6 @@ public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
         }
     }
 
-
     @Override
     public List<TypesOfBets> getAll() {
         List<TypesOfBets> betsList = new ArrayList<>();
@@ -55,4 +54,56 @@ public class TypesOfBetsService extends DBConnect implements TypesOfBetsDAO {
         return betsList;
     }
 
+    @Override
+    public void add(TypesOfBets typesOfBets) {
+        PreparedStatement preparedStatement = null;
+
+        String sql = "INSERT INTO racing_db.types_of_bets" + " (type, description)" + "VALUES(?,?)";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, typesOfBets.getType());
+            preparedStatement.setString(2, typesOfBets.getDescription());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void removeByType(String type) {
+        PreparedStatement preparedStatement = null;
+
+        String sql = "DELETE FROM racing_db.types_of_bets WHERE type=?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, type);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
 }

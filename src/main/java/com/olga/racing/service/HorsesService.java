@@ -40,11 +40,8 @@ public class HorsesService extends DBConnect implements HorsesDAO {
                 horses.setAge(resultSet.getInt("age"));
                 horses.setWeight(resultSet.getString("weight"));
                 horses.setCoefficient(resultSet.getFloat("coefficient"));
-
                 horsesList.add(horses);
             }
-
-
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         } finally {
@@ -63,4 +60,61 @@ public class HorsesService extends DBConnect implements HorsesDAO {
         return horsesList;
     }
 
+    @Override
+    public void add(Horses horses) {
+        PreparedStatement preparedStatement = null;
+
+        String sql = "INSERT INTO racing_db.horses" + " (id, horse_name, rating, age, weight, coefficient)" + "VALUES(?,?,?,?,?,?)";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, horses.getId());
+            preparedStatement.setString(2, horses.getHorseName());
+            preparedStatement.setFloat(3, horses.getRating());
+            preparedStatement.setInt(4, horses.getAge());
+            preparedStatement.setString(5, horses.getWeight());
+            preparedStatement.setFloat(6, horses.getCoefficient());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void removeById(int id) {
+        PreparedStatement preparedStatement = null;
+
+        String sql = "DELETE FROM racing_db.horses WHERE id=?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
 }
